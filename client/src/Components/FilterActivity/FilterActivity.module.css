@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,100;1,200;1,400&display=swap');
+.body{
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 70px;
+    margin-left: 22px;
+   }
+
+   .option{
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    width: 135px;
+    background-color: rgba(225,255,255,0.5);
+    border-radius:16px;
+    box-shadow: 0px 5px rgba(0,0,0,0.2);
+    color:#000000;
+    display: block;
+    float: right;
+} 
