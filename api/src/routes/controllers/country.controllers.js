@@ -84,7 +84,7 @@ const axios= require('axios');
 
 
     .then(async()=> {
-        const firstTen= await Country.findAll({offset:0, limit: 10,order:[["name","ASC"]]})
+        const firstTen= await Country.findAll({offset:0,order:[["name","ASC"]]})
     res.status(200).json(firstTen)
 })
 

@@ -81,6 +81,28 @@
     color:#000000
   }
 
+  .paginationBttns {
+    margin-top: 20px;
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    color: #ffff  ;
+  }
+
+  .paginationBttns a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid wheat;
+    cursor: pointer
+  }
+
+  .paginationBttns a:hover{
+    color: #000;
+    background-color:wheat ;
+  }
 
 
 

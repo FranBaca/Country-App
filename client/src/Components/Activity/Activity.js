@@ -1,12 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useSelector} from 'react-redux'
 import {addActivity} from '../../Actions/index';
 import {useDispatch} from 'react-redux';
 import {allCountries} from '../../Actions/index'
 import style from './Activity.module.css'
 import {Link} from 'react-router-dom'
+import {Modal, Button} from "@material-ui/core"
+import {makeStyles} from "@material-ui/core/styles";
+
+const useStyles = makeStyles ((theme) =>({
+    modal:{
+        position: "absolute",
+        width: 400,
+        backgroundColor:"white",
+        border: "2px solid #000",
+        boxShadow:theme.shadows[5],
+        padding: theme.spacing(2,4,3),
+        top: "50%",
+        left:"50%",
+        transform: "translate(-50%, -50%)"
+    },
+    
+}))
+
+
 
 export default function Activities(){
+    const styles = useStyles();
+    const [modal, setModal]=useState(false);
+
+    const openCloseModal =() =>{
+        setModal(!modal);
+        dispatch(addActivity(input))
+    }
+    const body =(
+        <div className={styles.modal}>
+            <div align="center">
+                <h2>The Activity has been added</h2>
+            </div>
+        </div>
+    )
     const countriesAll= useSelector(state => state.countriesNameID)
     const dispatch = useDispatch()
     console.log(countriesAll)
@@ -37,7 +70,7 @@ export default function Activities(){
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        dispatch(addActivity(input))
+       
     }
 
     return (
@@ -76,9 +109,7 @@ export default function Activities(){
             <option value="Spring">Spring</option>
             <option value="Summer">Summer</option>
         </select>
-        <button className={style.addButton} type="submit">Add</button>
-        
-        </div> 
+
         <div className={style.container}>
         <select className={style.select}  onChange={handleActivity} name="country" id="countries" multiple>
             <option className={style.option} label="Select the countries where the activity will take place"></option>
@@ -91,7 +122,17 @@ export default function Activities(){
         }
         
         </select>
-        </div>
+        </div> 
+        <button className={style.addButton} onClick={()=>openCloseModal()} type="submit">Add</button>
+        <Modal 
+        open={modal}
+        onClose={openCloseModal}>
+            {body}
+        </Modal>
+       
+        
+        </div> 
+        
         </form>
         </div>
         </div>

@@ -15,7 +15,7 @@
 
 
 .select{
-    position: fixed;
+    position:relative;
     flex-wrap: wrap;
     height: 50%;
     display: inline;
@@ -29,7 +29,7 @@
     backdrop-filter: blur(5px);
     margin-bottom: 10%;
     display: flex;
-    flex-direction:row;
+    flex-direction:column;
     
 }
 .option{
@@ -56,7 +56,8 @@
 }
 .form{
     display: flex;
-    flex-direction:row;
+    flex-direction:column;
+    width: 50%;
 }
 
 .addButton{
