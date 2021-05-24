@@ -14,6 +14,7 @@
 .logo{
 	position: relative;
 	max-width: 80px;
+	animation: transitionIn 0.75s;
 }
 
 .content{
@@ -22,6 +23,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;	
+	animation: transitionIn 0.75s;
 }
 
 .button {
@@ -36,7 +38,6 @@
 .title{
 	color:#fff;
 	font-size: 4em;
-	font-height: 1.4em;
 	font-weight: 500;
 	margin-bottom: 7px;
 }
@@ -66,3 +67,17 @@
 	border-radius: 20px;
 	margin-top: 40px;
 }
+
+
+@keyframes transitionIn {
+    from {
+        opacity: 0;
+        transform: rotateY(-10deg);
+    }
+    to{
+        opacity: 1;
+        transform: rotateX(-10deg);
+		transform: rotateY(0)
+    }
+}
+

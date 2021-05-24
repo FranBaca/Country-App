@@ -4,13 +4,7 @@ const axios= require('axios');
 
 
  async function getCountries(req,res){
-    if(req.query.offset){
-        const {offset} =req.query
-        const nextPage= await Country.findAll({offset,limit:10})
-        return res.json(nextPage)
-    }
-
-    else if(req.query.name){ 
+    if(req.query.name){ 
         const {name} = req.query
         const nameSearch = await Country.findAll({where:{name:{[Op.iLike]:`%${name}%`}}}) 
         if(nameSearch.length>0){
