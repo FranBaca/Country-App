@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom'
 import {Card} from '../Card/Card'
 import ReactPaginate from "react-paginate"
 
+
 export default function Home(){
 
         const country= useSelector(state=> state.countries);
@@ -63,7 +64,7 @@ export default function Home(){
               
 
                        
-                  
+                <div className={style.pagination}>
                     <ReactPaginate 
 
                       previousLabel={"Back"}
@@ -75,7 +76,7 @@ export default function Home(){
                      nextLinkClassName={"nextBttn"}
  
                     />
-                   
+                   </div>
     
                      
     

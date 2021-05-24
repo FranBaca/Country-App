@@ -24,7 +24,8 @@ return(
     <div className="body">
     <div className="container">
         <nav className={style.nav}>
-             <h2>Search a Country</h2>
+            <Link className={style.logo} to ="/"> <h2>Countries App</h2></Link> 
+            
     <Link className={style.about}  to="/about">About</Link>
     <Link className={style.about} to="/activity">Add Activity</Link>
     <form  onSubmit={handleSubmit}>
@@ -33,7 +34,7 @@ return(
             type="text"
             autoComplete="off"
             value={name}
-            placeholder="Insert a country"
+            placeholder="Search a country..."
             onChange={handleChange}
             >
             </input>

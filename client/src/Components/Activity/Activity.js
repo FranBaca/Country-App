@@ -5,44 +5,45 @@ import {useDispatch} from 'react-redux';
 import {allCountries} from '../../Actions/index'
 import style from './Activity.module.css'
 import {Link} from 'react-router-dom'
-import {Modal, Button} from "@material-ui/core"
-import {makeStyles} from "@material-ui/core/styles";
+import Modal from 'react-modal';
 
-const useStyles = makeStyles ((theme) =>({
-    modal:{
-        position: "absolute",
-        width: 400,
-        backgroundColor:"white",
-        border: "2px solid #000",
-        boxShadow:theme.shadows[5],
-        padding: theme.spacing(2,4,3),
-        top: "50%",
-        left:"50%",
-        transform: "translate(-50%, -50%)"
-    },
-    
-}))
+
+
 
 
 
 export default function Activities(){
-    const styles = useStyles();
-    const [modal, setModal]=useState(false);
 
-    const openCloseModal =() =>{
-        setModal(!modal);
-        dispatch(addActivity(input))
-    }
-    const body =(
-        <div className={styles.modal}>
-            <div align="center">
-                <h2>The Activity has been added</h2>
-            </div>
-        </div>
-    )
+    const customStyles = {
+        content : {
+          top                   : '50%',
+          left                  : '50%',
+          right                 : 'auto',
+          bottom                : 'auto',
+          marginRight           : '-50%',
+          transform             : 'translate(-50%, -50%)',
+          background            : "#C79C7C"
+        }
+      };
+
+
+      var subtitle;
+      const [modalIsOpen,setIsOpen] = React.useState(false);
+      function openModal() {
+        setIsOpen(true);
+      }
+    
+      function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        subtitle.style.color = 'black';
+      }
+    
+      function closeModal(){
+        setIsOpen(false);
+      }
+
     const countriesAll= useSelector(state => state.countriesNameID)
     const dispatch = useDispatch()
-    console.log(countriesAll)
     const [input,setInput] = React.useState({
         name:"",
         difficulty:"",
@@ -53,7 +54,7 @@ export default function Activities(){
 
     React.useEffect(()=>{
         dispatch(allCountries())
-    },[]);
+    },[dispatch]);
 
     const handleActivity=(e)=>{
         if(e.target.name!=="country"){
@@ -70,16 +71,20 @@ export default function Activities(){
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-       
+        dispatch(addActivity(input))
     }
 
     return (
         <div className={style.body}>
-            <div className={style.home}><Link  to={"/home"} >Home</Link></div>
+          <Link className={style.logo} to ="/home"> <h2>Countries App</h2></Link> 
+           
             <h2 className={style.title}>It will not be fun if you don't plan your activities... <span className={style.titlebig}>Do it here!</span></h2>
-            <div>
-        <form className={style.form} onSubmit={handleSubmit}> 
-           <div className={style.form}>
+           
+        <form onSubmit={handleSubmit}> 
+           <div className={style.container}>
+             <div className={style.containerInputs}>
+ 
+             
          <input className={style.input}
           name="name"
           type="text"
@@ -101,6 +106,9 @@ export default function Activities(){
           onChange={handleActivity}
           value={input.duration}
         />
+        
+
+       
         <select className={style.input}   onChange={handleActivity} name="season"
         placeholder="Season...">
             <option label="Season..."></option>
@@ -109,9 +117,10 @@ export default function Activities(){
             <option value="Spring">Spring</option>
             <option value="Summer">Summer</option>
         </select>
-
-        <div className={style.container}>
-        <select className={style.select}  onChange={handleActivity} name="country" id="countries" multiple>
+        </div>
+        <div className={style.containerSelect}>
+        
+        <select className={style.select}onChange={handleActivity} name="country" id="countries" multiple>
             <option className={style.option} label="Select the countries where the activity will take place"></option>
         {
             countriesAll?.map(c=>{
@@ -122,19 +131,35 @@ export default function Activities(){
         }
         
         </select>
+        </div>
         </div> 
-        <button className={style.addButton} onClick={()=>openCloseModal()} type="submit">Add</button>
-        <Modal 
-        open={modal}
-        onClose={openCloseModal}>
-            {body}
-        </Modal>
+
+
+        <div>
        
+       <Modal
+         isOpen={modalIsOpen}
+         onAfterOpen={afterOpenModal}
+         onRequestClose={closeModal}
+         style={customStyles}
+         contentLabel="Example Modal"
+       >
+
+         <h2 ref={_subtitle => (subtitle = _subtitle)}>Confirm</h2>
+         <div>¿Are you sure you want to add this activity?</div>
+           <button className={style.addButton} onClick={closeModal} type="submit">Add</button>
+           <button className={style.addButton} onClick={closeModal}>Cancel</button>
+       </Modal>
+     </div>
+
+        <div className={style.containerButton}>
+        <button className={style.addButton} onClick={openModal}>Add</button>
+        </div>
         
-        </div> 
+
+        
         
         </form>
-        </div>
         </div>
     )
 

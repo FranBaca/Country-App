@@ -16,10 +16,9 @@
     border-radius:16px;
     box-shadow: 0px 5px rgba(0,0,0,0.2);
     color:#000000;
-    display: block;
-    float: right;
+   
     margin-left: 2em;  
-    margin-bottom: 20px;
+   
 } 
 
 .option2{
@@ -32,8 +31,12 @@
     border-radius:16px;
     box-shadow: 0px 5px rgba(0,0,0,0.2);
     color:#000000;
-
     margin-left: 2em; 
 }   
 
+.OrderContainers{
+    display: flex;
+    flex-direction: row;
+    margin-top: 27px;
+}
 

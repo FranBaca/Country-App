@@ -24,6 +24,7 @@ export default function Order (){
 
     return(
         <div className={style.body}>
+            <div className={style.OrderContainers}>
             <select className={style.option} onChange={handleChange}> 
                 <optgroup label="Order by:">
                 <option label="Order by:"></option>
@@ -37,7 +38,7 @@ export default function Order (){
                 <option value="DESC">Higher to Lower</option>
             </select>
         </div>
-
+        </div>
         </div>
     )
 
